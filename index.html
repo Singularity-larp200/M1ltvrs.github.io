@@ -12,7 +12,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        
         .custom-cursor {
             position: fixed;
             width: 40px;
@@ -24,12 +23,10 @@
             transform: translate(-50%, -50%);
         }
 
-
-        
         * {
             cursor: none !important;
         }
-        
+
         *:focus,
         *:active,
         a:focus,
@@ -39,20 +36,23 @@
             cursor: none !important;
         }
 
-        
         input[type="range"],
         input[type="range"]::-webkit-slider-thumb,
         input[type="range"]::-moz-range-thumb {
             cursor: none !important;
         }
 
-        
         *:focus {
             outline: none;
         }
 
+        :root {
+            --accent-color: #7c5cff;
+            --panel-border: rgba(124, 92, 255, 0.5);
+        }
+
         body {
-            background-color: #000;
+            background-color: #05000a;
             color: #fff;
             overflow: hidden;
         }
@@ -73,101 +73,42 @@
             pointer-events: none;
             background-color: #05000a;
             background-image:
-                radial-gradient(ellipse at 50% 40%, rgba(168, 85, 247, 0.22) 0%, rgba(5, 0, 10, 0) 60%),
-                linear-gradient(var(--primary-color, #a855f7) 1px, transparent 1px),
-                linear-gradient(90deg, var(--primary-color, #a855f7) 1px, transparent 1px);
-            background-size: 100% 100%, 48px 48px, 48px 48px;
-            background-position: 0 0, 0 0, 0 0;
-            opacity: 0.9;
+                linear-gradient(var(--accent-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--accent-color) 1px, transparent 1px);
+            background-size: 48px 48px, 48px 48px;
+            opacity: 0.25;
             animation: grid-drift 16s linear infinite;
-            transition: background-image 0.6s ease;
-        }
-
-        #background::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(5,0,10,0) 0%, rgba(5,0,10,0.85) 85%);
-            pointer-events: none;
         }
 
         @keyframes grid-drift {
-            0% { background-position: 0 0, 0 0, 0 0; }
-            100% { background-position: 0 0, 48px 48px, 48px 48px; }
-        }
-
-        .glitch-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        #hacker-overlay, #snow-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 48px 48px, 48px 48px; }
         }
 
         .hidden {
             display: none !important;
         }
-
-        
-        .controls {
+        .top-controls {
             position: fixed;
-            bottom: calc(50% - 240px - 10px);
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
-            z-index: 20;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-        }
-
-        .theme-button {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            font-size: 14px;
-            font-weight: bold;
+            gap: 15px;
+            z-index: 20;
+            background: #000000;
+            padding: 8px 12px;
+            border-radius: 20px;
         }
 
-        .theme-button:hover {
-            transform: scale(1.1);
-            border-color: rgba(255, 255, 255, 0.8);
-        }
-
-        
         .slider {
             -webkit-appearance: none;
             appearance: none;
             width: 80px;
             height: 5px;
             border-radius: 5px;
-            background: rgba(255, 255, 255, 0.3);
+            background: #3a3a3a;
             outline: none;
         }
 
@@ -177,11 +118,10 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: white;
+            background: #ffffff;
             cursor: pointer;
         }
 
-        
         .transparency-control {
             display: flex;
             align-items: center;
@@ -191,26 +131,9 @@
         .transparency-icon {
             width: 20px;
             height: 20px;
-            color: white;
+            color: #ffffff;
         }
 
-        
-        .top-controls {
-            position: fixed;
-            bottom: calc(50% - 240px - 60px);
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 20;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-        }
-
-        
         #profile-block {
             position: fixed;
             top: 50%;
@@ -218,18 +141,14 @@
             transform: translate(-50%, -50%);
             width: 820px;
             min-height: 332px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #0d0710;
+            border: 1px solid var(--panel-border);
             padding: 20px;
             border-radius: 15px;
             z-index: 20;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease-out;
             pointer-events: auto;
         }
 
@@ -244,7 +163,6 @@
             width: 150px;
             height: 150px;
         }
-
         .profile-container::after {
             content: '';
             position: absolute;
@@ -253,19 +171,10 @@
             right: -2px;
             bottom: -2px;
             border-radius: 50%;
-            background: radial-gradient(
-                circle at 10px 10px,
-                var(--primary-color, #00CED1) 10%,
-                transparent 15%
-            );
+            border: 2px solid transparent;
+            border-top-color: var(--accent-color);
             animation: orbit 3s linear infinite;
             z-index: -1;
-            filter: blur(1px);
-            box-shadow: none;
-        }
-
-        .profile-container.fast-orbit::after {
-            animation: fast-orbit 0.5s linear forwards;
         }
 
         .profile-picture {
@@ -275,7 +184,6 @@
             object-fit: cover;
             cursor: pointer;
             pointer-events: auto;
-            opacity: 1 !important;
         }
 
         .profile-info {
@@ -291,7 +199,6 @@
             margin-bottom: 10px;
         }
 
-        
         @font-face {
             font-family: 'Angel Wish';
             src: url('assets/Angel_wish.ttf') format('truetype');
@@ -304,9 +211,7 @@
             font-size: 32px;
             font-weight: bold;
             letter-spacing: 3px;
-            color: #fff;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
-            opacity: 1 !important;
+            color: #ffffff;
         }
 
         .badge-group {
@@ -318,13 +223,12 @@
         .badge-container {
             position: relative;
             pointer-events: auto;
-            opacity: 1 !important;
         }
 
         .badge-container .tooltip {
             visibility: hidden;
             width: 120px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: #000000;
             color: #fff;
             text-align: center;
             border-radius: 6px;
@@ -340,23 +244,22 @@
 
         .badge-container:hover .tooltip {
             visibility: visible;
-            opacity: 1 !important;
+            opacity: 1;
         }
 
         .badge-box {
-            background: rgba(255, 255, 255, 0.15);
+            background: #1a1a1a;
             padding: 2px;
             border-radius: 15px;
             display: inline-block;
         }
 
         .badge-box-inner {
-            background: rgba(0, 0, 0, 0.5);
+            background: #000000;
             padding: 5px;
             border-radius: 12px;
             display: flex;
             gap: 8px;
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .badge {
@@ -364,27 +267,30 @@
             height: 22px;
             transition: transform 0.3s;
             pointer-events: auto;
-            opacity: 1 !important;
         }
 
         .badge:hover {
             transform: scale(1.2);
         }
 
+        #discord-activity {
+            font-size: 16px;
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+
         #profile-bio {
-            color: rgba(255, 255, 255, 0.8);
+            color: #cccccc;
             font-size: 18px;
             line-height: 1.5;
             margin-bottom: 10px;
-            opacity: 1 !important;
         }
 
         .bio-separator {
             width: 100%;
             height: 1px;
-            background: rgba(255, 255, 255, 0.2);
+            background: #2a2a2a;
             margin: 20px 0;
-            opacity: 1 !important;
         }
 
         .profile-footer {
@@ -401,23 +307,19 @@
             gap: 12px;
             margin-top: 0;
             pointer-events: auto;
-            opacity: 1 !important;
         }
 
         .social-icon {
             width: 36px;
             height: 36px;
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
             pointer-events: auto;
-            opacity: 1 !important;
         }
 
         .social-icon:hover {
-            transform: scale(1.4) rotateY(15deg);
+            transform: scale(1.4);
         }
 
-        
         #skills-block {
             position: fixed;
             top: 50%;
@@ -425,17 +327,14 @@
             transform: translate(-50%, -50%);
             width: 820px;
             min-height: 332px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #0d0710;
+            border: 1px solid var(--panel-border);
             padding: 20px;
             border-radius: 15px;
             z-index: 20;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            backdrop-filter: blur(10px);
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease-out;
         }
 
         .skills-title {
@@ -464,7 +363,7 @@
 
         .skill-bar-container {
             height: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #1a1a1a;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -475,20 +374,18 @@
             width: 0%;
             transition: width 2s;
         }
-
         #python-bar {
-            background: linear-gradient(67deg, #ff6b6b, #ff9f9f);
+            background: #ff6b6b;
         }
 
         #html-bar {
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            background: #4facfe;
         }
 
         #golang-bar {
-            background: linear-gradient(30deg, #43e97b, #38f9d7);
+            background: #43e97b;
         }
 
-        
         #results-button-container {
             position: fixed;
             top: 20px;
@@ -498,26 +395,24 @@
         }
 
         #results-theme {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #3a3a3a;
             padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
             font-family: 'Courier New', monospace;
             font-size: 14px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s;
+            transition: background 0.3s;
         }
 
         #results-theme:hover {
-            background: rgba(0, 0, 0, 0.9);
-            border-color: rgba(255, 255, 255, 0.8);
+            background: #1a1a1a;
         }
 
         #results-hint {
             position: absolute;
-            background: rgba(0, 0, 0, 0.8);
+            background: #000000;
             color: white;
             padding: 8px 12px;
             border-radius: 10px;
@@ -526,8 +421,7 @@
             text-align: center;
             pointer-events: none;
             z-index: 25;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #2a2a2a;
         }
 
         #results-hint::before {
@@ -538,59 +432,7 @@
             transform: translateX(-50%);
             border-width: 0 10px 10px 10px;
             border-style: solid;
-            border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
-        }
-
-        
-        .home-theme #profile-block,
-        .home-theme #skills-block {
-            border-color: rgba(0, 195, 255, 0.5);
-        }
-
-        .hacker-theme #profile-block,
-        .hacker-theme #skills-block {
-            border-color: rgba(0, 255, 0, 0.5);
-        }
-
-        .rain-theme #profile-block,
-        .rain-theme #skills-block {
-            border-color: rgba(100, 149, 237, 0.5);
-        }
-
-        .anime-theme #profile-block,
-        .anime-theme #skills-block {
-            border-color: rgba(255, 0, 255, 0.5);
-        }
-
-        .car-theme #profile-block,
-        .car-theme #skills-block {
-            border-color: rgba(255, 165, 0, 0.5);
-        }
-
-        
-        .glitch {
-            animation: glitch 0.2s ease-in-out;
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(0);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                transform: translate(2px, 2px);
-            }
-            80% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
+            border-color: transparent transparent #000000 transparent;
         }
 
         @keyframes orbit {
@@ -602,42 +444,6 @@
             }
         }
 
-        @keyframes fast-orbit {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes titleGlitch {
-            0% { content: ""; }
-            9% { content: "S"; }
-            18% { content: "Si"; }
-            27% { content: "Sin"; }
-            36% { content: "Sing"; }
-            45% { content: "Singu"; }
-            54% { content: "Singul"; }
-            63% { content: "Singula"; }
-            72% { content: "Singular"; }
-            81% { content: "Singularit"; }
-            90% { content: "Singularity"; }
-            100% { content: "Singularity"; }
-        }
-
-        @keyframes titleCursor {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        .title-container::after {
-            content: "|";
-            animation: titleCursor 1s infinite;
-            opacity: 0;
-        }
-
-        
         .cursor-trail {
             position: fixed;
             pointer-events: none;
@@ -648,21 +454,19 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: #ffffff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: opacity 0.3s ease;
         }
 
-        
         #start-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -677,9 +481,7 @@
             text-align: center;
         }
 
-        
         @media (max-width: 430px) {
-            
             #profile-block, #skills-block {
                 width: 90vw;
                 max-width: 350px;
@@ -772,22 +574,8 @@
                 font-size: 14px;
             }
 
-            
-            .controls {
-                bottom: 20px;
-                gap: 8px;
-                padding: 5px 8px;
-            }
-
-            .theme-button {
-                width: 28px;
-                height: 28px;
-                font-size: 12px;
-            }
-
-            
             .top-controls {
-                bottom: 70px;
+                bottom: 20px;
                 gap: 10px;
                 padding: 6px 10px;
             }
@@ -811,7 +599,6 @@
                 height: 10px;
             }
 
-            
             #results-button-container {
                 top: 10px;
             }
@@ -827,37 +614,24 @@
                 padding: 6px 10px;
             }
 
-            
             #start-text {
                 font-size: 18px;
                 padding: 0 20px;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Retro+Gaming&display=swap" rel="stylesheet">
 </head>
-<body class="home-theme" onload="initMedia()">
-    
+<body onload="initMedia()">
+
     <div class="custom-cursor"></div>
 
-    
     <div id="start-screen">
         <div id="start-text"></div>
     </div>
 
     <div class="container">
-        
+
         <div id="background"></div>
-
-        
-        <div class="glitch-overlay"></div>
-        <div id="hacker-overlay" class="hidden">
-            
-        </div>
-        <div id="snow-overlay" class="hidden">
-            
-        </div>
-
 
         <div id="profile-block">
             <div class="profile-header">
@@ -867,7 +641,7 @@
                 <div class="profile-info">
                     <div class="name-and-badges">
                         <div id="profile-name">Singularity</div>
-                        
+
                         <div class="badge-box">
                             <div class="badge-box-inner">
                                 <div class="badge-group">
@@ -911,9 +685,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="discord-activity" style="font-size: 16px; color: rgba(255, 255, 255, 0.6); margin-top: 5px;">
-                            Loading Discord activity...
-                    </div>
+                    <div id="discord-activity">Loading Discord status…</div>
                     <div id="profile-bio"></div>
                 </div>
             </div>
@@ -921,7 +693,6 @@
             <div class="bio-separator"></div>
 
             <div class="profile-footer">
-
                 <div class="social-links">
                     <a href="https://github.com/Ascend-Home?tab=repositories" target="_blank">
                         <img src="assets/github.svg" alt="GitHub" class="social-icon">
@@ -935,11 +706,8 @@
                         <img src="assets/namemc.svg" alt="NameMC" class="social-icon">
                     </a>
                 </div>
-
-
             </div>
         </div>
-
 
         <div id="skills-block" class="hidden">
             <h2 class="skills-title">Programming Skills</h2>
@@ -955,7 +723,7 @@
             </div>
             <div class="skill">
                 <div class="skill-name">
-                    <img src="assets/html.svg" alt="C++" class="skill-icon">
+                    <img src="assets/html.svg" alt="HTML" class="skill-icon">
                     <span>html</span>
                     <span>100%</span>
                 </div>
@@ -965,7 +733,7 @@
             </div>
             <div class="skill">
                 <div class="skill-name">
-                    <img src="assets/golang.svg" alt="C#" class="skill-icon">
+                    <img src="assets/golang.svg" alt="Go" class="skill-icon">
                     <span>Go</span>
                     <span>30%</span>
                 </div>
@@ -975,21 +743,10 @@
             </div>
         </div>
 
-
         <div id="results-button-container" class="hidden">
             <button id="results-theme">View Results</button>
             <div id="results-hint" class="hidden">Click again to return to profile</div>
         </div>
-
-
-        <div class="controls">
-            <div id="home-theme" class="theme-button">1</div>
-            <div id="hacker-theme" class="theme-button">2</div>
-            <div id="rain-theme" class="theme-button">3</div>
-            <div id="anime-theme" class="theme-button">4</div>
-            <div id="car-theme" class="theme-button">5</div>
-        </div>
-
 
         <div class="top-controls">
             <div class="transparency-control">
@@ -1002,28 +759,12 @@
         </div>
     </div>
 
-
     <audio id="background-music" loop>
         <source src="background.mp3" type="audio/mp3">
     </audio>
-    <audio id="hacker-music" loop muted>
-        <source src="real.mp3" type="audio/mp3">
-    </audio>
-    <audio id="rain-music" loop muted>
-        <source src="rain_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="anime-music" loop muted>
-        <source src="anime_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="car-music" loop muted>
-        <source src="hacker_music.mp3" type="audio/mp3">
-    </audio>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-
     <script src="script.js"></script>
-    
+
 </body>
 </html>
